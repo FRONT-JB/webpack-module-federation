@@ -1,0 +1,20 @@
+import React from "react";
+
+import "./index.css";
+
+export interface AppProps {
+  name: string;
+}
+
+const App: React.FC<AppProps> = ({ name }) => (
+  <div className="container">
+    <div>Name: isolated-app</div>
+    <div>Framework: react</div>
+    <div>Language: TypeScript</div>
+    <div>CSS: Empty CSS</div>
+
+    <p>{name}</p>
+  </div>
+);
+
+export default App;

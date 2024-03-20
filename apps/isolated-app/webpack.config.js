@@ -2,7 +2,6 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const Dotenv = require("dotenv-webpack");
 const deps = require("./package.json").dependencies;
-
 module.exports = (_, argv) => ({
   output: {
     publicPath: "http://localhost:3001/",
@@ -42,11 +41,11 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "component_app",
+      name: "isolated_app",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        "./Button": "./src/components/Button",
+        "./injector": "./src/injector.tsx",
       },
       shared: {
         ...deps,
@@ -57,11 +56,6 @@ module.exports = (_, argv) => ({
         "react-dom": {
           singleton: true,
           requiredVersion: deps["react-dom"],
-        },
-        "shared-library": {
-          singleton: true,
-          // requiredVersion: require("../../packages/shared-library/package.json")
-          //   .version,
         },
       },
     }),
