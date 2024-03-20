@@ -10,7 +10,6 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
-
   build: {
     outDir: "./dist",
     lib: {

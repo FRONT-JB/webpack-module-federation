@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { join, map } from "lodash";
 
 import "./index.css";
-import Button from "component_app/Button";
+
 import { NameProvider } from "shared-library";
+
+const Button = React.lazy(() => import("component_app/Button"));
 
 const App = () => (
   <NameProvider name="hello">
@@ -14,14 +16,18 @@ const App = () => (
       <div>Language: JavaScript</div>
       <div>CSS: Empty CSS</div>
       <div>{join(map(["1", "2"]), "-")}</div>
-      <Button
-        onClick={() => {
-          console.log("Clicked!!");
-        }}
-      >
-        Primary
-      </Button>
-      <Button type="warning">Warning</Button>
+      <Suspense fallback="...loading">
+        <Button
+          onClick={() => {
+            console.log("Clicked!!");
+          }}
+        >
+          Primary
+        </Button>
+      </Suspense>
+      <Suspense fallback="...loading">
+        <Button type="warning">Warning</Button>
+      </Suspense>
     </div>
   </NameProvider>
 );
