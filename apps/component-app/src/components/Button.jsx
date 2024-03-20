@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { join, map } from "lodash";
+import { NameContext } from "shared-library";
 
 const styleMapping = {
   primary: {
@@ -29,12 +30,15 @@ const styleMapping = {
 };
 
 const Button = ({ type, children, onClick }) => {
+  const name = useContext(NameContext);
+
   const buttonType = type === "warning" ? "warning" : "primary";
 
   return (
     <button style={styleMapping[buttonType]} onClick={onClick}>
       {children}
       {join(map(["1", "2"]), "-")}
+      {name}
     </button>
   );
 };

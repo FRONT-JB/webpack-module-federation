@@ -58,6 +58,11 @@ module.exports = (_, argv) => ({
           singleton: true,
           requiredVersion: deps["react-dom"],
         },
+        "shared-library": {
+          singleton: true,
+          // requiredVersion: require("../../packages/shared-library/package.json")
+          //   .version,
+        },
       },
     }),
     new HtmlWebPackPlugin({
