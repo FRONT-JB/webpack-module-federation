@@ -1,4 +1,5 @@
 import React from "react";
+import { join, map } from "lodash";
 
 const styleMapping = {
   primary: {
@@ -33,6 +34,7 @@ const Button = ({ type, children, onClick }) => {
   return (
     <button style={styleMapping[buttonType]} onClick={onClick}>
       {children}
+      {join(map(["1", "2"]), "-")}
     </button>
   );
 };
